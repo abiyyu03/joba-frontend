@@ -4,7 +4,7 @@ import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 
 const PostCard = () => {
     return (
-        <div className="mt-6 w-9/12 mx-auto block">
+        <div className="mt-6 w-8/12 mx-auto block">
             <Link to="#">
                 <div className="shadow-lg rounded-3xl p-4 text-white bg-green-600 hover:bg-green-700">
                     <h1 className="text-2xl">Hello World</h1>
