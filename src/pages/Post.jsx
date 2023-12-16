@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import keys from '../constant/keys';
 import ENDPOINT from '../constant/endpoint';
+import AuthenticatedPage from '../components/AuthenticatedPage';
 
 const Post = () => {
     const [ postData, setPostData ] = useState([]);
@@ -23,8 +24,10 @@ const Post = () => {
     }, [])
     return (
         <div className="container mx-auto">
-            <PostCard post={postData} />
-            <BottomNav />
+            <AuthenticatedPage>
+                <PostCard post={postData} />
+                <BottomNav />
+            </AuthenticatedPage>
         </div>
     )
 }

@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import Button from '../UI/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ENDPOINT from '../../constant/endpoint';
 
@@ -9,7 +9,6 @@ const FormLogin = () => {
         email: "",
         password: "",
     });
-
     const { email, password } = formData;
 
     //handling form
@@ -22,12 +21,22 @@ const FormLogin = () => {
     };
 
     async function handleSubmit(e) {
-        e.preventDefault();
-        console.log(formData)
+        // e.preventDefault();
+        // // console.log(formData)
         const data = await axios.post(ENDPOINT.auth.login, formData);
-        localStorage.setItem("jewete", data.data);
-        console.log(data)
+        localStorage.setItem("jewete", data.data.data);
+        // console.log(data)
+        return redirect("/")
     }
+    // const authHeader = () => {
+    //     const userToken = localStorage.getItem("jewete");
+
+    //     if (userToken) {
+    //         return { Authorization: `Bearer ${userToken}` }
+    //     } else {
+    //         return {}
+    //     }
+    // }
     return (
         <form action="" method="POST" onSubmit={handleSubmit}>
             <div className="h-screen flex items-center">

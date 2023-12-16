@@ -7,6 +7,7 @@ import Bookmark from './pages/Bookmark';
 import SearchPage from './pages/Search';
 import DetailPostPage from './pages/DetailPostPage';
 import AddPostFormPage from './pages/AddPostFormPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
             <Route path='/search' element={<SearchPage />} />
             <Route path='/post/:id' element={<DetailPostPage />} />
             <Route path='/post/add' element={<AddPostFormPage />} />
+            <Route path='/profile' element={<ProfilePage />} />
         </Routes>
     )
 }
