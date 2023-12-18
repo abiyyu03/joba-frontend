@@ -8,6 +8,7 @@ import SearchPage from './pages/Search';
 import DetailPostPage from './pages/DetailPostPage';
 import AddPostFormPage from './pages/AddPostFormPage';
 import ProfilePage from './pages/ProfilePage';
+import EditProfilePage from './pages/EditProfilePage';
 
 function App() {
     return (
@@ -19,8 +20,9 @@ function App() {
             <Route path='/bookmark' element={<Bookmark />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path='/post/:id' element={<DetailPostPage />} />
-            <Route path='/post/add' element={<AddPostFormPage />} />
+            <Route path='/new-post' element={<AddPostFormPage />} />
             <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/edit-profile' element={<EditProfilePage />} />
         </Routes>
     )
 }

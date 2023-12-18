@@ -5,9 +5,11 @@ import Header from '../Header';
 import keys from '../../constant/keys';
 import axios from 'axios';
 import ENDPOINT from '../../constant/endpoint';
+import decodeJWT from '../../services/decodeJWT';
 
 const PostCard = (props) => {
     const { post } = props;
+    const idUser = JSON.parse(localStorage.getItem('jewete')).tokenPayload.id_user
     const saveBookmark = async (event, postId, userId) => {
         event.preventDefault()
         const bookmarkData = {
@@ -22,7 +24,7 @@ const PostCard = (props) => {
         console.log(data)
     }
     return (
-        <>
+        <div className='mb-9'>
             <Header />
             {
                 post.map(p => {
@@ -31,7 +33,7 @@ const PostCard = (props) => {
                             <Link to={"/post/" + p.id}>
                                 <div className="shadow-lg rounded-3xl p-4 text-black bg-white relative border transition ease-in-out delay-150 hover:scale-105 active:border-blue" >
                                     {/* <form method="post"> */}
-                                    <button type="button" onClick={event => saveBookmark(event, p.id, "asdasd")}>
+                                    <button type="button" onClick={event => saveBookmark(event, p.id, idUser)}>
                                         <div className="shadow-xl w-fit p-3 rounded-2xl hover:bg-blue-100 bg-white 
                                         text-blue-800 absolute top-0 right-8 bordered">
                                             <FontAwesomeIcon icon={faBookmark} size="xl"></FontAwesomeIcon>
@@ -52,7 +54,7 @@ const PostCard = (props) => {
                     )
                 })
             }
-        </>
+        </div>
     )
 };
 

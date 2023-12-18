@@ -12,13 +12,19 @@ const ENDPOINT = {
 	},
 	post: {
 		get: `${baseUrl}/post`,
+		create: `${baseUrl}/post`,
 		getById(id) {
 			return `${baseUrl}/post/${id}`;
 		},
 	},
 	bookmark: {
-		get: `${baseUrl}/bookmarks`,
+		get(userId) {
+			return `${baseUrl}/bookmarks/${userId}`;
+		},
 		create: `${baseUrl}/bookmarks`,
+		delete(id) {
+			return `${baseUrl}/bookmarks/${id}`;
+		},
 	},
 };
 

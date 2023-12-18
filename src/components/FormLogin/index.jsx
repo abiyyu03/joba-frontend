@@ -21,12 +21,12 @@ const FormLogin = () => {
     };
 
     async function handleSubmit(e) {
-        // e.preventDefault();
+        e.preventDefault();
         // // console.log(formData)
         const data = await axios.post(ENDPOINT.auth.login, formData);
-        localStorage.setItem("jewete", data.data.data);
-        // console.log(data)
-        return redirect("/")
+        localStorage.setItem("jewete", JSON.stringify(data.data.userData));
+        // console.log(data.data.userData)
+        console.log(JSON.parse(localStorage.getItem("jewete")));
     }
     // const authHeader = () => {
     //     const userToken = localStorage.getItem("jewete");
@@ -38,7 +38,7 @@ const FormLogin = () => {
     //     }
     // }
     return (
-        <form action="" method="POST" onSubmit={handleSubmit}>
+        <form method="POST" onSubmit={handleSubmit}>
             <div className="h-screen flex items-center">
                 <div className="w-full p-7 mx-auto sm:w-7/12 md:w-5/12 xl:w-3/12">
                     <h1 className="text-center text-5xl font-bold mb-5">JOBA</h1>

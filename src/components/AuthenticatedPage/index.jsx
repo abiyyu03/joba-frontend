@@ -1,7 +1,8 @@
 import { useJwt } from 'react-jwt';
 import { Link } from 'react-router-dom';
 const AuthenticatedPage = (props) => {
-    const { decodedToken, isExpired } = useJwt(localStorage.getItem('jewete'));
+    const accessToken = JSON.parse(localStorage.getItem('jewete')).accessToken
+    const { decodedToken, isExpired } = useJwt(accessToken);
     return (
         <div>
             {isExpired ?

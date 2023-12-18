@@ -1,32 +1,83 @@
+import { useState } from 'react';
 import TitleSection from '../TitleSection';
+import ENDPOINT from '../../constant/endpoint';
+import axios from 'axios';
+import keys from '../../constant/keys';
+import Button from '../UI/button';
 
 const AddPostForm = () => {
+    const [ formData, setFormData ] = useState({
+        title: "",
+        body: "",
+        tag_id: "123",
+        user_id: "123",
+        slug: "123",
+        location: "",
+        contact: "",
+    });
+    const { title, body, tag_id, user_id, slug, location, contact } = formData;
+
+    // //handling form
+    function handleChange(e) {
+        const { name, value } = e.target;
+
+        setFormData({
+            ...formData, [ name ]: value
+        });
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        console.log(formData)
+        await axios.post(ENDPOINT.post.create, formData,
+            {
+                headers: {
+                    'Authorization': `Bearer ${keys.jwtKey}`
+                }
+            });
+        // console.log(data.data)
+    }
     return (
         <div className="mt-4 w-11/12 mx-auto">
-            <TitleSection>Add Post</TitleSection>
+            <TitleSection>Add a New Post</TitleSection>
             <div className="shadow-lg rounded-xl p-5 mt-4">
-                <form action="">
+                <form action="" onSubmit={handleSubmit} method="POST">
                     <div className="mt-5">
-                        <input type="text" placeholder="Judul" className="input-bordered input w-full" />
+                        <label htmlFor="">Judul <sup className="text-red-500">*</sup></label>
+                        <input type="text" required placeholder="Judul" name="title" value={title} onChange={handleChange} className="input-bordered input w-full" />
                     </div>
                     <div className="mt-5">
-                        <textarea placeholder="Isi Post" className="textarea textarea-bordered textarea-lg w-full" ></textarea>
+                        <label htmlFor="">Judul <sup className="text-red-500">*</sup></label>
+                        <textarea placeholder="Isi Post" required name="body" value={body} onChange={handleChange} className="textarea textarea-bordered textarea-lg w-full" ></textarea>
                     </div>
                     <div className="mt-5">
-                        <input type="text" placeholder="Masukan Nomor kontak yang bisa dihubungi" name="contact" className="input-bordered input w-full" />
+                        <label htmlFor="">Kontak (Whatsapp) <sup className="text-red-500">*</sup></label>
+                        <input type="text" required placeholder="Masukan Nomor kontak yang bisa dihubungi" value={contact} name="contact" onChange={handleChange} className="input-bordered input w-full" />
                     </div>
                     <div className="mt-5">
-                        <input type="text" placeholder="Masukan alamat lengkap" name="location" className="input-bordered input w-full" />
+                        <label htmlFor="">Alamat Lengkap <sup className="text-red-500">*</sup></label>
+                        <input type="text" required placeholder="Masukan alamat lengkap" name="location" value={location} onChange={handleChange} className="input-bordered input w-full" />
                     </div>
                     <div className="mt-5">
-                        <input type="text" placeholder="Masukan alamat lengkap" name="" className="input-bordered input w-full" />
+                        <div className="form-control">
+                            <label className="label cursor-pointer">
+                                <input type="checkbox" className="checkbox checkbox-primary" />
+                                <span className="label-text">Saya menyetujui ketentuan privasi layanan Joba</span>
+                            </label>
+                        </div>
                     </div>
+                    {/* <div className="mt-5">
+                        <select className="select select-bordered w-full" name="tag_id">
+                            <option>Han Solo</option>
+                            <option>Greedo</option>
+                        </select>
+                    </div> */}
                     <div className="mt-5">
-                        <button type="button" className="bg-green-500 text-white rounded-lg p-3 w-full">Unggah</button>
+                        <Button>Buat</Button>
                     </div>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

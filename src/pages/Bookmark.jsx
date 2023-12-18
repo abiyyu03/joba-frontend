@@ -3,11 +3,17 @@ import BookmarkCard from '../components/BookmarkCard';
 import BottomNav from '../components/BottomNav';
 import axios from 'axios';
 import keys from '../constant/keys';
+import AuthenticatedPage from '../components/AuthenticatedPage';
+import decodeJWT from '../services/decodeJWT';
+import ENDPOINT from '../constant/endpoint';
 
 const Bookmark = () => {
     const [ bookmarkData, setBookmarkData ] = useState([]);
+    const user = JSON.parse(localStorage.getItem('jewete')).tokenPayload
+    // console.log(decodeJWT())
+    // const idUser = decodeJWT().id_user ?? 'hehe'
     const getBookmarkData = async () => {
-        const response = await axios.get('http://localhost:3000/bookmarks',
+        const response = await axios.get(ENDPOINT.bookmark.get(user.id_user),
             {
                 headers: {
                     'Authorization': `Bearer ${keys.jwtKey}`
@@ -21,8 +27,10 @@ const Bookmark = () => {
     }, [])
     return (
         <div className="container mx-auto">
-            <BookmarkCard savedPost={bookmarkData} />
-            <BottomNav />
+            <AuthenticatedPage>
+                <BookmarkCard savedPost={bookmarkData} />
+                <BottomNav />
+            </AuthenticatedPage>
         </div>
     )
 }

@@ -3,6 +3,7 @@ import Search from '../components/Search';
 import axios from 'axios';
 import ENDPOINT from '../constant/endpoint';
 import BottomNav from '../components/BottomNav';
+import AuthenticatedPage from '../components/AuthenticatedPage';
 
 const SearchPage = () => {
     // const [ searchData, setSearchData ] = useState([])
@@ -16,8 +17,10 @@ const SearchPage = () => {
     // }, [])
     return (
         <div className="container max-w-80 px-6 justify-center mx-auto">
-            <Search />
-            <BottomNav />
+            <AuthenticatedPage>
+                <Search />
+                <BottomNav />
+            </AuthenticatedPage>
         </div>
     )
 }

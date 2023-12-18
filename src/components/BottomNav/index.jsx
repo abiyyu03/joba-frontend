@@ -1,30 +1,34 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle, faHome, faBriefcase, faMagnifyingGlass, faFileCircleCheck, faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle, faBriefcase, faBookmark, faChartBar } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
 const BottomNav = () => {
-    return (
-        <div className="btm-nav">
-            <button>
+    return (<div className="btm-nav">
+        <button>
+            <Link to="/">
                 <FontAwesomeIcon icon={faBriefcase}></FontAwesomeIcon>
                 <p>Find Job</p>
-            </button>
-            <button>
-            <FontAwesomeIcon icon={faFileCircleCheck}></FontAwesomeIcon>
-                <p>Create Job</p>
-            </button>
-            <button>
-            <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-                <p>Search</p>
-            </button>
-            <button>
-            <FontAwesomeIcon icon={faBookmark}></FontAwesomeIcon>
+            </Link>
+        </button>
+        <button>
+            <Link to="/bookmark">
+                <FontAwesomeIcon icon={faBookmark}></FontAwesomeIcon>
                 <p>Bookmark</p>
-            </button>
-            <button>
+            </Link>
+        </button>
+        <button>
+            <Link to="/">
+                <FontAwesomeIcon icon={faChartBar}></FontAwesomeIcon>
+                <p>Statistics</p>
+            </Link>
+        </button>
+        <button>
+            <Link to="/profile">
                 <FontAwesomeIcon icon={faUserCircle}></FontAwesomeIcon>
                 <p>Profile</p>
-            </button>
-        </div>
+            </Link>
+        </button>
+    </div>
     )
 }
 

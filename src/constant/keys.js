@@ -1,5 +1,5 @@
 const keys = {
-	jwtKey: localStorage.getItem('jewete'),
+	jwtKey: JSON.parse(localStorage.getItem('jewete')).accessToken,
 };
 
 export default keys;

@@ -5,6 +5,9 @@ import { useEffect, useState } from 'react';
 import keys from '../constant/keys';
 import ENDPOINT from '../constant/endpoint';
 import AuthenticatedPage from '../components/AuthenticatedPage';
+import FloatingButton from '../components/UI/FloatingButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Post = () => {
     const [ postData, setPostData ] = useState([]);
@@ -26,6 +29,9 @@ const Post = () => {
         <div className="container mx-auto">
             <AuthenticatedPage>
                 <PostCard post={postData} />
+                <FloatingButton>
+                    <FontAwesomeIcon icon={faPlus} size="2xl"></FontAwesomeIcon>
+                </FloatingButton>
                 <BottomNav />
             </AuthenticatedPage>
         </div>
