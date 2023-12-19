@@ -6,9 +6,7 @@ import { useJwt } from 'react-jwt'
 import { Link } from 'react-router-dom'
 
 const TopProfile = () => {
-    const user = JSON.parse(localStorage.getItem('jewete')).tokenPayload
-
-    console.log(user)
+    const user = JSON.parse(localStorage.getItem('jewete')).tokenPayload ?? ""
     return (
         <div className="">
             <div className="flex justify-between mx-6 items-center">

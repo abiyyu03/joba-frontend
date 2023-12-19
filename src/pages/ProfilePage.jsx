@@ -7,8 +7,8 @@ import TopProfile from '../components/TopProfile/Index'
 const ProfilePage = () => {
     return (
         <div className="container">
-            {/* <Header /> */}
             <AuthenticatedPage>
+                {/* <Header /> */}
                 <TopProfile />
                 <ProfileMenu />
                 <BottomNav />

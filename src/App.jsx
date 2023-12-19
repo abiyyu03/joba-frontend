@@ -9,6 +9,7 @@ import DetailPostPage from './pages/DetailPostPage';
 import AddPostFormPage from './pages/AddPostFormPage';
 import ProfilePage from './pages/ProfilePage';
 import EditProfilePage from './pages/EditProfilePage';
+import PrivacyPage from './pages/PrivacyPage';
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
             <Route path='/new-post' element={<AddPostFormPage />} />
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/edit-profile' element={<EditProfilePage />} />
+            <Route path='/privacy' element={<PrivacyPage />} />
         </Routes>
     )
 }

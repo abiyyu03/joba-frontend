@@ -3,8 +3,10 @@ import Button from '../UI/button';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ENDPOINT from '../../constant/endpoint';
+import { useNavigate } from "react-router-dom";
 
 const FormLogin = () => {
+    const navigate = useNavigate()
     const [ formData, setFormData ] = useState({
         email: "",
         password: "",
@@ -22,21 +24,11 @@ const FormLogin = () => {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        // // console.log(formData)
         const data = await axios.post(ENDPOINT.auth.login, formData);
         localStorage.setItem("jewete", JSON.stringify(data.data.userData));
-        // console.log(data.data.userData)
-        console.log(JSON.parse(localStorage.getItem("jewete")));
+        navigate("/")
     }
-    // const authHeader = () => {
-    //     const userToken = localStorage.getItem("jewete");
 
-    //     if (userToken) {
-    //         return { Authorization: `Bearer ${userToken}` }
-    //     } else {
-    //         return {}
-    //     }
-    // }
     return (
         <form method="POST" onSubmit={handleSubmit}>
             <div className="h-screen flex items-center">

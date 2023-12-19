@@ -5,9 +5,15 @@ import Header from '../Header';
 import keys from '../../constant/keys';
 import axios from 'axios';
 import ENDPOINT from '../../constant/endpoint';
-import decodeJWT from '../../services/decodeJWT';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
 
 const PostCard = (props) => {
+    const query = new URLSearchParams(window.location.search);
+    const addPostParam = query.get("add_post");
+    const notifyAddPostSuccess = () => toast("Postingan berhasil dibuat !");
+    const notifyAddBookmark = () => toast("Postingan berhasil disimpan ke bookmark!");
     const { post } = props;
     const idUser = JSON.parse(localStorage.getItem('jewete')).tokenPayload.id_user
     const saveBookmark = async (event, postId, userId) => {
@@ -16,16 +22,31 @@ const PostCard = (props) => {
             postId: postId,
             userId: userId
         };
-        const data = await axios.post(ENDPOINT.bookmark.create, bookmarkData, {
+        await axios.post(ENDPOINT.bookmark.create, bookmarkData, {
             headers: {
                 'Authorization': `Bearer ${keys.jwtKey}`
             }
         })
-        console.log(data)
+        notifyAddBookmark()
+    }
+    if (addPostParam == 'success') {
+        notifyAddPostSuccess()
     }
     return (
-        <div className='mb-9'>
+        <div>
             <Header />
+            <ToastContainer
+                position="top-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             {
                 post.map(p => {
                     return (

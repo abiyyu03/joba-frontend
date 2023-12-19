@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 
 const ProfileMenu = () => {
+    const logout = () => {
+        localStorage.removeItem('jewete')
+    }
     return (
         <ul className="menu bg-base-200 w-full rounded-box">
             <li className="py-2 text-lg">
@@ -20,7 +23,7 @@ const ProfileMenu = () => {
             </li>
             <li className="py-2 text-lg text-red-600">
 
-                <Link to="/logout">
+                <Link onClick={logout}>
                     <FontAwesomeIcon icon={faSignOut}></FontAwesomeIcon>
                     Keluar Akun
                 </Link>
