@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy":"https://backend-dot-ch2-pr610-joba.et.r.appspot.com",
+  "proxy":"https://joba-frontend.vercel.app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
