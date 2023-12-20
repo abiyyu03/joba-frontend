@@ -1,13 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Joba - Portal Pencari Kerja</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Joba - Portal Pencari Kerja</title>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.jsx"></script>
+		<script>
+			const isUserNotExist = localStorage.getItem('jewete') === null;
+			const userObject = JSON.stringify({
+				tokenPayload: { id_user: '', fullname: '', email: '', address: '', number_phone: '', description: '' },
+				accessToken: '',
+			});
+			if (isUserNotExist) localStorage.setItem('jewete', userObject);
+		</script>
+	</body>
 </html>
