@@ -62,7 +62,7 @@ const PostCard = (props) => {
                                     </button>
                                     {/* </form> */}
                                     <h1 className="text-xl">{p.title}</h1>
-                                    <p className="text-sm">{p.created_at}</p>
+                                    <p className="text-xs">{p.skill_name}</p>
                                     <div className="mt-4">
                                         <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs 
                                         font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">{p.tag}</span>

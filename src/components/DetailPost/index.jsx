@@ -41,6 +41,7 @@ const DetailPost = () => {
                     {detailPostData.location}
                 </h4>
                 <hr />
+                <p className="mt-4" >Keahlian : <span className="font-bold">{detailPostData.skill_name}</span></p>
                 <p className="mt-4" dangerouslySetInnerHTML={{ __html: detailPostData.body }}></p>
             </div>
             <div className="flex justify-between content-center mt-5">

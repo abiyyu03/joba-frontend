@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000';
+const baseUrl = import.meta.env.API_URL;
 
 const ENDPOINT = {
 	auth: {
