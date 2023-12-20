@@ -1,10 +1,15 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TitleSection from '../TitleSection';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 const EditProfile = () => {
     return (
         <div className="mt-4 w-11/12 mx-auto">
             <TitleSection>Edit Profile</TitleSection>
             <div className="shadow-lg rounded-xl p-5 mt-4">
+                <div className="mx-auto text-center">
+                    <FontAwesomeIcon icon={faUserCircle} className="text-8xl"></FontAwesomeIcon>
+                </div>
                 <form action="">
                     <div className="mt-5">
                         <label htmlFor="">Nama Lengkap</label>

@@ -60,15 +60,15 @@ const BookmarkCard = (props) => {
                     bookmarkData.map(p => {
                         return (
                             <div className="mt-6 w-80 w-10/12 mx-auto hover:shadow-xl" key={p.id}>
-                                <Link to="#">
+                                <Link to={"/post/" + p.id}>
                                     <div className="shadow-lg rounded-3xl p-4 text-black bg-white relative" >
                                         <Link to="" onClick={() => deleteBookmark(p.id_bookmark)}>
-                                            <div className="shadow-xl w-fit p-3 rounded-2xl hover:bg-gray-100 bg-red-500 
-                                        text-white absolute top-0 right-5">
-                                                <FontAwesomeIcon icon={faTimes} size="xl"></FontAwesomeIcon>
+                                            <div className="shadow-xl w-fit p-2 hover:bg-gray-100 rounded 
+                                        text-bg-900 absolute top-2 right-5">
+                                                <FontAwesomeIcon icon={faTimes} size="lg"></FontAwesomeIcon>
                                             </div>
                                         </Link>
-                                        <h1 className="text-2xl">{p.title}</h1>
+                                        <h1 className="text-xl">{p.title}</h1>
                                         {/* <p className="text-lg">{p.body}</p> */}
                                         {/* <div className="flex content-between"> */}
                                         {/* </div> */}

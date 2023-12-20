@@ -26,6 +26,12 @@ const ENDPOINT = {
 			return `${baseUrl}/bookmarks/${id}`;
 		},
 	},
+	skill: {
+		get: `${baseUrl}/skills`,
+	},
+	tag: {
+		get: `${baseUrl}/tags`,
+	},
 };
 
 export default ENDPOINT;

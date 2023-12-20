@@ -6,7 +6,7 @@ import { faLess } from '@fortawesome/free-brands-svg-icons';
 const TitleSection = ({ children }) => {
     return (
         <div className="flex place-items-center items-center ">
-            <Link to="/">
+            <Link to="..">
                 <FontAwesomeIcon icon={faLessThan} size="xl"></FontAwesomeIcon>
             </Link>
             {/* <h1 className="text-4xl mx-2">{"<"}</h1> */}

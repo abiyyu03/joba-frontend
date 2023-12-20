@@ -12,6 +12,15 @@ import EditProfilePage from './pages/EditProfilePage';
 import PrivacyPage from './pages/PrivacyPage';
 
 function App() {
+    const isUserNotExist = localStorage.getItem('jewete') === null;
+    const userObject = JSON.stringify(
+        {
+            "tokenPayload":
+                { "id_user": "", "fullname": "", "email": "", "address": "", "number_phone": "", "description": "" },
+            "accessToken": ""
+        }
+    )
+    if (isUserNotExist) localStorage.setItem('jewete', userObject);
     return (
         <Routes>
             {/* <Route path='/' element={<Home />} /> */}
