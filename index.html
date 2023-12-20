@@ -9,13 +9,5 @@
 	<body>
 		<div id="root"></div>
 		<script type="module" src="/src/main.jsx"></script>
-		<script>
-			const isUserNotExist = localStorage.getItem('jewete') === null;
-			const userObject = JSON.stringify({
-				tokenPayload: { id_user: '', fullname: '', email: '', address: '', number_phone: '', description: '' },
-				accessToken: '',
-			});
-			if (isUserNotExist) localStorage.setItem('jewete', userObject);
-		</script>
 	</body>
 </html>
