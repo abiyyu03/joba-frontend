@@ -1,4 +1,4 @@
-const baseUrl = import.meta.env.API_URL;
+const baseUrl = 'https://backend-dot-ch2-pr610-joba.et.r.appspot.com';
 
 const ENDPOINT = {
 	auth: {
