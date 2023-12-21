@@ -26,8 +26,12 @@ const FormLogin = () => {
         e.preventDefault();
         const data = await axios.post(ENDPOINT.auth.login, formData);
         localStorage.setItem("jewete", JSON.stringify(data.data.userData));
-        navigate("/")
+        navigate(0)
     }
+
+    useEffect(() => {
+        if (JSON.parse(localStorage.getItem('jewete')).accessToken != "") navigate("/")
+    }, [])
 
     return (
         <form method="POST" onSubmit={handleSubmit}>
