@@ -2,6 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle, faBriefcase, faBookmark, faChartBar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
+import { faStickyNote } from '@fortawesome/free-regular-svg-icons';
 const BottomNav = () => {
     return (<div className="btm-nav">
         <button>
@@ -17,9 +18,9 @@ const BottomNav = () => {
             </Link>
         </button>
         <button>
-            <Link to="/">
-                <FontAwesomeIcon icon={faChartBar}></FontAwesomeIcon>
-                <p>Statistics</p>
+            <Link to="/my-post">
+                <FontAwesomeIcon icon={faStickyNote}></FontAwesomeIcon>
+                <p>My Post</p>
             </Link>
         </button>
         <button>

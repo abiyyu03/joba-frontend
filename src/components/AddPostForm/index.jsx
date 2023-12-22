@@ -46,9 +46,9 @@ const AddPostForm = (props) => {
                     'Authorization': `Bearer ${keys.jwtKey}`
                 }
             });
-        console.log(data)
+        // console.log(data)
         // notify()
-        // navigate("/?add_post=success")
+        navigate("/?add_post=success")
     }
     return (
         <div className="mt-4 w-11/12 mx-auto">

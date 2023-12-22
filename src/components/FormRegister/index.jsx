@@ -1,8 +1,9 @@
-import { Link, redirect } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import Button from '../UI/button';
 import { useState } from 'react';
 import axios from 'axios';
 import ENDPOINT from '../../constant/endpoint';
+import keys from '../../constant/keys'
 
 const FormRegister = () => {
     const [ formData, setFormData ] = useState({
@@ -14,6 +15,7 @@ const FormRegister = () => {
         repeatPassword: "",
         description: "-",
     });
+    const navigate = useNavigate()
 
     const { email, password, fullname, address, numberPhone, repeatPassword } = formData;
 
@@ -32,11 +34,11 @@ const FormRegister = () => {
             await axios.post(ENDPOINT.auth.register, formData,
                 {
                     headers: {
-                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiaUBleGFtcGxlLmNvbSIsImlhdCI6MTcwMjUwNDk1MiwiZXhwIjoxNzAyNTEyMTUyfQ.xa7xHXpBfdbTcPMWum8kHN0VyeSz-TK6b3ufJq6sQiU'
+                        'Authorization': `Bearer ${keys.jwtKey}`,
                     }
                 }
             );
-            redirect("/login")
+            navigate("/login?register=success")
         }
     }
     return (
@@ -77,7 +79,7 @@ const FormRegister = () => {
                     </div>
                     <div className="mt-6">
                         <Button>Register</Button>
-                        <Link to="/login">Sudah Punya Akun ? Login</Link>
+                        <Link to="/login">Sudah Punya Akun ? <span className="font-bold">Login</span></Link>
                     </div>
                 </div>
             </div>

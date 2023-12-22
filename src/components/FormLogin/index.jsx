@@ -4,9 +4,16 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ENDPOINT from '../../constant/endpoint';
 import { useNavigate } from "react-router-dom";
+import { useJwt } from 'react-jwt';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FormLogin = () => {
+    const { isExpired } = useJwt(JSON.parse(localStorage.getItem('jewete')).accessToken)
     const navigate = useNavigate()
+    const notifyRegisterSuccess = () => toast("Register Berhasil !");
+    const query = new URLSearchParams(window.location.search);
+    const registerParam = query.get("register");
     const [ formData, setFormData ] = useState({
         email: "",
         password: "",
@@ -20,7 +27,7 @@ const FormLogin = () => {
         setFormData({
             ...formData, [ name ]: value
         });
-    };
+    }
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -29,13 +36,29 @@ const FormLogin = () => {
         navigate(0)
     }
 
+
     useEffect(() => {
-        if (JSON.parse(localStorage.getItem('jewete')).accessToken != "") navigate("/")
+        if (registerParam == 'success') {
+            notifyRegisterSuccess()
+        }
     }, [])
+    if (!isExpired) navigate("/")
 
     return (
         <form method="POST" onSubmit={handleSubmit}>
             <div className="h-screen flex items-center">
+                <ToastContainer
+                    position="top-right"
+                    autoClose={4000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
                 <div className="w-full p-7 mx-auto sm:w-7/12 md:w-5/12 xl:w-3/12">
                     <h1 className="text-center text-5xl font-bold mb-5">JOBA</h1>
                     <h1 className="text-center text-3xl">Sign-in</h1>

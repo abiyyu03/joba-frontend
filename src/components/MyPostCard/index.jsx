@@ -8,42 +8,42 @@ import ENDPOINT from '../../constant/endpoint';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const PostCard = (props) => {
+const MyPostCard = (props) => {
     const query = new URLSearchParams(window.location.search);
     const addPostParam = query.get("add_post");
     const deletePostParam = query.get("delete_post");
 
-    const notifyAddPostSuccess = () => toast("Postingan berhasil dibuat !");
-    const notifyDeletePostSuccess = () => toast("Postingan berhasil dihapus !");
-    const notifyAddBookmark = () => toast("Postingan berhasil disimpan ke bookmark!");
+    // const notifyAddPostSuccess = () => toast("Postingan berhasil dibuat !");
+    // const notifyDeletePostSuccess = () => toast("Postingan berhasil dihapus !");
+    // const notifyAddBookmark = () => toast("Postingan berhasil disimpan ke bookmark!");
 
     const { post } = props;
-    const idUser = JSON.parse(localStorage.getItem('jewete')).tokenPayload.id_user
-    const saveBookmark = async (event, postId, userId) => {
-        event.preventDefault()
-        const bookmarkData = {
-            postId: postId,
-            userId: userId
-        };
-        await axios.post(ENDPOINT.bookmark.create, bookmarkData, {
-            headers: {
-                'Authorization': `Bearer ${keys.jwtKey}`
-            }
-        })
-        notifyAddBookmark()
-    }
-    useEffect(() => {
-        if (addPostParam == 'success') {
-            notifyAddPostSuccess()
-        }
-        if (deletePostParam == 'success') {
-            notifyDeletePostSuccess()
-        }
-    }, [])
+    // const idUser = JSON.parse(localStorage.getItem('jewete')).tokenPayload.id_user
+    // const saveBookmark = async (event, postId, userId) => {
+    //     event.preventDefault()
+    //     const bookmarkData = {
+    //         postId: postId,
+    //         userId: userId
+    //     };
+    //     await axios.post(ENDPOINT.bookmark.create, bookmarkData, {
+    //         headers: {
+    //             'Authorization': `Bearer ${keys.jwtKey}`
+    //         }
+    //     })
+    //     notifyAddBookmark()
+    // }
+    // if (addPostParam == 'success') {
+    //     notifyAddPostSuccess()
+    // }
+    // if (deletePostParam == 'success') {
+    //     notifyDeletePostSuccess()
+    // }
     return (
         <div >
             <Header />
+            <h1 className="text-2xl text-center">Postingan Saya</h1>
             <ToastContainer
                 position="top-right"
                 autoClose={4000}
@@ -64,14 +64,14 @@ const PostCard = (props) => {
                                 <div className="shadow-lg rounded-3xl p-4 text-black bg-white relative border transition ease-in-out delay-150 hover:scale-105 active:border-blue" >
                                     {/* <form method="post"> */}
                                     <div className="flex">
-                                        <div>
+                                        {/* <div>
                                             <button type="button" onClick={event => saveBookmark(event, p.id, idUser)}>
                                                 <div className="shadow-xl w-fit p-3 rounded-2xl hover:bg-blue-100 bg-white 
                                         text-blue-800 absolute top-0 right-8 bordered">
-                                                    <FontAwesomeIcon icon={faBookmark} size="xl"></FontAwesomeIcon>
+                                                    <FontAwesomeIcon icon={faTrash} size="xl"></FontAwesomeIcon>
                                                 </div>
                                             </button>
-                                        </div>
+                                        </div> */}
                                         {/* </form> */}
                                         <div>
                                             <h1 className="text-xl">{p.title}</h1>
@@ -94,4 +94,4 @@ const PostCard = (props) => {
     )
 };
 
-export default PostCard;
+export default MyPostCard;

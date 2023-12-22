@@ -5,6 +5,14 @@ const ENDPOINT = {
 		login: `${baseUrl}/login`,
 		register: `${baseUrl}/register`,
 	},
+	user: {
+		get(id) {
+			return `${baseUrl}/users/${id}`;
+		},
+		update(id) {
+			return `${baseUrl}/users/${id}`;
+		},
+	},
 	search: {
 		get(keyword) {
 			return `${baseUrl}/search?q=${keyword}`;
@@ -14,6 +22,12 @@ const ENDPOINT = {
 		get: `${baseUrl}/post`,
 		create: `${baseUrl}/post`,
 		getById(id) {
+			return `${baseUrl}/post/${id}`;
+		},
+		getByUserId(idUser) {
+			return `${baseUrl}/post/user/${idUser}`;
+		},
+		delete(id) {
 			return `${baseUrl}/post/${id}`;
 		},
 	},

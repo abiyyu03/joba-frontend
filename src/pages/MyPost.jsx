@@ -8,11 +8,13 @@ import AuthenticatedPage from '../components/AuthenticatedPage';
 import FloatingButton from '../components/UI/FloatingButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import MyPostCard from '../components/MyPostCard';
 
-const Post = () => {
+const MyPost = () => {
     const [ postData, setPostData ] = useState([]);
+    const idUser = JSON.parse(localStorage.getItem('jewete')).tokenPayload.id_user
     const getTagData = async () => {
-        const response = await axios.get(ENDPOINT.post.get,
+        const response = await axios.get(ENDPOINT.post.getByUserId(idUser),
             {
                 headers: {
                     'Authorization': `Bearer ${keys.jwtKey}`
@@ -28,14 +30,14 @@ const Post = () => {
     return (
         <div className="container mx-auto mb-12">
             <AuthenticatedPage>
-                <PostCard post={postData} />
-                <FloatingButton>
+                <MyPostCard post={postData} />
+                {/* <FloatingButton>
                     <FontAwesomeIcon icon={faPlus} size="xl"></FontAwesomeIcon>
-                </FloatingButton>
+                </FloatingButton> */}
                 <BottomNav />
             </AuthenticatedPage>
         </div>
     )
 }
 
-export default Post
+export default MyPost

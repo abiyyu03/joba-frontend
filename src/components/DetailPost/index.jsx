@@ -1,18 +1,20 @@
 import { faTelegram } from '@fortawesome/free-brands-svg-icons';
 import { faEdit, faMap } from '@fortawesome/free-regular-svg-icons';
-import { faCalendar, faMapSigns, faPhone, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faCheck, faCheckCircle, faMapLocation, faMapSigns, faPhone, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TitleSection from '../TitleSection';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import keys from '../../constant/keys';
 import axios from 'axios';
 import ENDPOINT from '../../constant/endpoint';
+import moment from 'moment';
 
 const DetailPost = () => {
     const user = JSON.parse(localStorage.getItem('jewete')).tokenPayload
     const [ detailPostData, setDetailPostData ] = useState({});
     const { id } = useParams();
+    const navigate = useNavigate()
     const getDetailPostData = async () => {
         const response = await axios.get(ENDPOINT.post.getById(id),
             {
@@ -24,24 +26,47 @@ const DetailPost = () => {
         const postData = response.data.data;
         setDetailPostData(postData);
     }
+    const deletePostData = async () => {
+        await axios.delete(ENDPOINT.post.delete(id),
+            {
+                headers: {
+                    'Authorization': `Bearer ${keys.jwtKey}`
+                }
+            }
+        );
+        navigate("/?delete_post=success")
+    }
     useEffect(() => {
         getDetailPostData()
     }, [ id ])
     return (
         <div className="container mt-6">
-            <div className="mt-4 w-96 ml-7">
-                {/* <h1 className="text-4xl">Judul</h1> */}
+            <div className="mt-4 ml-7">
                 <TitleSection>{detailPostData.title}</TitleSection>
                 <h4 className="my-4">
                     <FontAwesomeIcon icon={faCalendar} className="mr-2"></FontAwesomeIcon>
-                    {detailPostData.created_at}
+                    {moment(detailPostData.created_at).locale('id-ID').format("ddd, DD MMMM YYYY HH:mm")}
                 </h4>
                 <h4 className="my-4">
-                    <FontAwesomeIcon icon={faMap} className="mr-2"></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faMapLocation} className="mr-2"></FontAwesomeIcon>
                     {detailPostData.location}
                 </h4>
+                {detailPostData.is_active == 1 ?
+                    <p className='my-4 text-green-500'>
+                        <FontAwesomeIcon icon={faCheckCircle} className="mr-2"></FontAwesomeIcon>
+                        <span>Aktif Merekrut</span>
+                    </p>
+                    :
+                    <p className='my-4 text-red-500'>
+                        <FontAwesomeIcon icon={faTimes} className="mr-2"></FontAwesomeIcon>
+                        <span>Tidak Aktif Merekrut</span>
+                    </p>
+                }
+                <div className="my-4">
+                    <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs 
+                                    font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">{detailPostData.skill_name}</span>
+                </div>
                 <hr />
-                <p className="mt-4" >Keahlian : <span className="font-bold">{detailPostData.skill_name}</span></p>
                 <p className="mt-4" dangerouslySetInnerHTML={{ __html: detailPostData.body }}></p>
             </div>
             <div className="flex justify-between content-center mt-5">
@@ -53,9 +78,9 @@ const DetailPost = () => {
                         <Link to="#" className="underline"> <FontAwesomeIcon icon={faMap}></FontAwesomeIcon> Lokasi</Link>
                     </h5> */}
                 </div>
-                {user.id_user != detailPostData.user_id ?
+                {user.id_user == detailPostData.user_id ?
                     <div className="flex mx-4">
-                        <Link to="#">
+                        <Link to="#" onClick={deletePostData}>
                             <div className="shadow-xl w-fit p-3 rounded-2xl hover:bg-gray-100 bg-white text-dark-500 mx-3">
                                 <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
                             </div>

@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router';
+import { Route, Routes, useNavigate } from 'react-router';
 import './index.css';
 import Post from './pages/Post';
 import Login from './pages/Login';
@@ -10,9 +10,18 @@ import AddPostFormPage from './pages/AddPostFormPage';
 import ProfilePage from './pages/ProfilePage';
 import EditProfilePage from './pages/EditProfilePage';
 import PrivacyPage from './pages/PrivacyPage';
+import { useJwt } from 'react-jwt';
+import MyPost from './pages/MyPost';
 
 function App() {
-
+    const { isExpired } = useJwt(JSON.parse(localStorage.getItem('jewete')).accessToken)
+    const navigate = useNavigate()
+    // if (!isExpired) {
+    //     navigate("/")
+    // } else {
+    //     navigate("/login")
+    // }
+    // if (isExpired) navigate("/login")
     return (
         <Routes>
             {/* <Route path='/' element={<Home />} /> */}
@@ -26,6 +35,7 @@ function App() {
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/edit-profile' element={<EditProfilePage />} />
             <Route path='/privacy' element={<PrivacyPage />} />
+            <Route path='/my-post' element={<MyPost />} />
         </Routes>
     )
 }
