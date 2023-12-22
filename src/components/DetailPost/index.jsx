@@ -85,11 +85,11 @@ const DetailPost = () => {
                                 <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
                             </div>
                         </Link>
-                        <Link to="#">
+                        {/* <Link to="#">
                             <div className="shadow-xl w-fit p-3 rounded-2xl hover:bg-gray-100 bg-white text-dark-500  ">
                                 <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
                             </div>
-                        </Link>
+                        </Link> */}
                     </div>
                     :
                     <h1></h1>
