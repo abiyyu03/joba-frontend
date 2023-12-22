@@ -7,9 +7,10 @@ import axios from 'axios';
 import ENDPOINT from '../../constant/endpoint';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-const PostCard = (props) => {
+const PostCard = () => {
+    const [ postData, setPostData ] = useState([]);
     const query = new URLSearchParams(window.location.search);
     const addPostParam = query.get("add_post");
     const deletePostParam = query.get("delete_post");
@@ -18,7 +19,6 @@ const PostCard = (props) => {
     const notifyDeletePostSuccess = () => toast("Postingan berhasil dihapus !");
     const notifyAddBookmark = () => toast("Postingan berhasil disimpan ke bookmark!");
 
-    const { post } = props;
     const idUser = JSON.parse(localStorage.getItem('jewete')).tokenPayload.id_user
     const saveBookmark = async (event, postId, userId) => {
         event.preventDefault()
@@ -33,7 +33,19 @@ const PostCard = (props) => {
         })
         notifyAddBookmark()
     }
+    const getPostData = async () => {
+        const response = await axios.get(ENDPOINT.post.get,
+            {
+                headers: {
+                    'Authorization': `Bearer ${keys.jwtKey}`
+                }
+            }
+        );
+        const postData = response.data.data;
+        setPostData(postData);
+    }
     useEffect(() => {
+        getPostData()
         if (addPostParam == 'success') {
             notifyAddPostSuccess()
         }
@@ -57,7 +69,7 @@ const PostCard = (props) => {
                 theme="light"
             />
             {
-                post.map(p => {
+                postData.map(p => {
                     return (
                         <div className="mt-6 w-11/12 mx-auto" key={p.id}>
                             <Link to={"/post/" + p.id}>

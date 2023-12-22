@@ -10,25 +10,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Post = () => {
-    const [ postData, setPostData ] = useState([]);
-    const getTagData = async () => {
-        const response = await axios.get(ENDPOINT.post.get,
-            {
-                headers: {
-                    'Authorization': `Bearer ${keys.jwtKey}`
-                }
-            }
-        );
-        const postData = response.data.data;
-        setPostData(postData);
-    }
-    useEffect(() => {
-        getTagData()
-    }, [])
     return (
         <div className="container mx-auto mb-12">
             <AuthenticatedPage>
-                <PostCard post={postData} />
+                <PostCard />
                 <FloatingButton>
                     <FontAwesomeIcon icon={faPlus} size="xl"></FontAwesomeIcon>
                 </FloatingButton>
