@@ -19,9 +19,10 @@ const MyPostCard = () => {
     // const notifyDeletePostSuccess = () => toast("Postingan berhasil dihapus !");
     // const notifyAddBookmark = () => toast("Postingan berhasil disimpan ke bookmark!");
 
+    const idUser = JSON.parse(localStorage.getItem('jewete')).tokenPayload.id_user
     const [ postData, setPostData ] = useState([]);
     const getPostData = async () => {
-        const response = await axios.get(ENDPOINT.post.get,
+        const response = await axios.get(ENDPOINT.post.getByUserId(idUser),
             {
                 headers: {
                     'Authorization': `Bearer ${keys.jwtKey}`
@@ -34,7 +35,6 @@ const MyPostCard = () => {
     useEffect(() => {
         getPostData()
     }, [])
-    // const idUser = JSON.parse(localStorage.getItem('jewete')).tokenPayload.id_user
     // const saveBookmark = async (event, postId, userId) => {
     //     event.preventDefault()
     //     const bookmarkData = {
